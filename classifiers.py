@@ -17,6 +17,7 @@ xtest = X.iloc[itest, :]
 ytest = Y.iloc[itest]
 classifier = st.selectbox('Select classifier',
                               ['SVM', 'Tree', 'Random Forest', 'Naive Bayes'])
+
 CLS = {'SVM': SVC,
        'Tree': DecisionTreeClassifier,
        'Random Forest': RandomForestClassifier,
