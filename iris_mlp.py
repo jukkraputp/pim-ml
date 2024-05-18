@@ -13,7 +13,7 @@ class Classifier(nn.Module):
         return torch.softmax(self.fc2(x), dim=1)
 
 model = Classifier()
-model.load_state_dict(torch.load('model.pth'))
+model.load_state_dict(torch.load('model.pth', map_location='cpu'))
 model.eval()
 
 st.title('Iris Dataset')
