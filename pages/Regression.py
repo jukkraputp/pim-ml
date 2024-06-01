@@ -74,4 +74,5 @@ if 'df' in st.session_state:
 
     st.sidebar.divider()
     if st.sidebar.button('Save model'):
-        joblib.dump(target_transformer, 'model.joblib')
+        # joblib.dump(target_transformer, 'model.joblib')
+        st.session_state['model'] = target_transformer
