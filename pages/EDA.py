@@ -15,3 +15,19 @@ if 'df' in st.session_state:
     corr = df[selected_col].corr(numeric_only=True).round(2)
     fig = px.imshow(corr, text_auto=True)
     st.plotly_chart(fig)
+
+    col = st.sidebar.selectbox('Select a column', df.columns)
+    tmp = df[col]
+    if pd.api.types.is_numeric_dtype(tmp):
+        outliers = st.sidebar.checkbox('Outliers', False)
+        if outliers:
+            q_low = tmp.quantile(0.01)
+            q_high = tmp.quantile(0.99)
+            tmp = tmp[(tmp > q_low) & (tmp < q_high)]
+        st.write(tmp.describe())
+        fig = px.histogram(tmp, x=col)
+        st.plotly_chart(fig)
+    else:
+        st.write(tmp.value_counts())
+        fig = px.pie(tmp, names=col)
+        st.plotly_chart(fig)
